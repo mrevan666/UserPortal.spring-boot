@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update a User</title>
+</head>
+<body>
+<a href="/user">Back to page</a>
+
+<form action="#" th:action="@{/user/save}" th:object="${user}" method="post">
+
+    User ID:<input type="text" th:field="*{id}" >
+    <br>
+    User Name:<input type="text" th:field="*{name}" >
+    <br>
+    User Surname:<input type="text" th:field="*{surname}" >
+    <br>
+    <button type="submit" style="margin: 20px;height: 30px;width: 100px;border: none;background: darkgreen;color: white;border-radius: 5px">Update</button>
+    <button type="reset" style="margin: 20px;height: 30px;width: 100px;border: none;background: darkred;color: white;border-radius: 5px">Reset</button>
+</form>
+
+</body>
+</html>

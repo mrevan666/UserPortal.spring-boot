@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+
+<h1>User Portal</h1>
+<a href="/user/new">Add a user</a>
+<br>
+<a href="/user/list">User List</a>
+<br>
+
+<form action="/user/update" method="get">
+    Update user with ID:<br>
+    <input type="text" name="id">
+    <button type="submit" style="margin: 20px;height: 30px;width: 100px;border: none;background: darkgreen;color: white;border-radius: 5px">Submit</button>
+</form>
+
+<form action="/user/delete" method="get">
+    Update user with ID:<br>
+    <input type="text" name="id">
+    <button type="submit" style="margin: 20px;height: 30px;width: 100px;border: none;background: darkred;color: white;border-radius: 5px">Delete</button>
+</form>
+
+</body>
+</html>
