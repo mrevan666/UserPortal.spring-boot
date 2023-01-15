@@ -3,19 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Add a User</title>
+    <style>
+        .error{
+            color: darkred;
+        }
+    </style>
 </head>
-<body>
+<body style="
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+flex-direction: column;
+">
 
 <a href="/user">Back to page</a>
 
     <form action="#" th:action="@{/user/save}" th:object="${user}" method="post">
+        <div th:if="${#fields.hasErrors('*')}">
+            <p class="error">Please Correct Errors Below</p>
+        </div>
 
         User ID:<input type="text" th:field="*{id}" >
+        <span class="error" th:if="${#fields.hasErrors('id')">
+            <ul>
+                <li th:each="err : ${#fields.errors('id')}" th:text="${err}"></li>
+            </ul>
+        </span>
         <br>
             User Name:<input type="text" th:field="*{name}" >
+        <span class="error" th:if="${#fields.hasErrors('name')">
+            <ul>
+                <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+            </ul>
+        </span>
         <br>
             User Surname:<input type="text" th:field="*{surname}" >
+        <span class="error" th:if="${#fields.hasErrors('surname')">
+            <ul>
+                <li th:each="err : ${#fields.errors('surname')}" th:text="${err}"></li>
+            </ul>
+        </span>
         <br>
+            <p th:each="occupation :${allOccupations}">
+                <input type="checkbox" name="occupations" th:value="${occupation.id}">
+                <label th:text="${occupation.name}"></label>
+            </p>
+
+        <br>
+
         <button type="submit" style="margin: 20px;height: 30px;width: 100px;border: none;background: darkblue;color: white;border-radius: 5px">Save</button>
         <button type="reset" style="margin: 20px;height: 30px;width: 100px;border: none;background: darkred;color: white;border-radius: 5px">Reset</button>
     </form>

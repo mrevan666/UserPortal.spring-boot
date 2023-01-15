@@ -1,14 +1,15 @@
 package com.admin.Admin.Controller;
 
+import com.admin.Admin.Entity.Occupation;
 import com.admin.Admin.Entity.User;
+import com.admin.Admin.Repository.OccupationRepository;
 import com.admin.Admin.Repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -18,6 +19,9 @@ public class UserController {
 
     @Autowired //dependency injection
     private UserRepository userRepository;
+
+    @Autowired
+    private OccupationRepository occupationRepository;
 
     @GetMapping(path = "/user")
     public String index(){
@@ -34,11 +38,16 @@ public class UserController {
     @GetMapping(path = "/user/new")
     public String newPage(Model model){
         model.addAttribute("user",new User());
+        Iterable<Occupation> occupations = occupationRepository.findAll();
+        model.addAttribute("allOccupations", occupations);
         return "User";
     }
 
     @PostMapping(path = "/user/save")
-    public String addUser(User user,Model mode){
+    public String addUser(@Valid User user, BindingResult br, Model model){
+        if(br.hasErrors()){
+            return "User";
+        }
         userRepository.save(user);
         return "redirect:/user/list";
     }
@@ -50,6 +59,8 @@ public class UserController {
             User user = optionalUser.get();
             model.addAttribute("user", user);
         }
+        Iterable<Occupation> occupations = occupationRepository.findAll();
+        model.addAttribute("allOccupations", occupations);
             return "Update";
     }
 
@@ -69,6 +80,13 @@ public class UserController {
         userRepository.delete(user);
         return "redirect:/user/list";
 
+    }
+
+    @GetMapping(path = "/user/name/{name}")
+    public String getNameById(Model model, @PathVariable String name){
+        Iterable<User> users = userRepository.findByName(name);
+        model.addAttribute("users",users);
+        return "list";
     }
 
 }

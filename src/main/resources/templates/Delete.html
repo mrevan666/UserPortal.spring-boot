@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <title>Delete</title>
 </head>
-<body>
+<body style="
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+flex-direction: column;
+">
 <a href="/user">Back to page</a>
 
 <form action="#" th:action="@{/user/delete}" th:object="${user}" method="post">
 
-    User ID:<input type="text" th:field="*{id}" >
+    User ID:<input type="text" th:field="*{id}">
     <br>
-    User Name:<input type="text" th:field="*{name}" >
+    User Name:<input type="text" th:field="*{name}"  disabled>
     <br>
-    User Surname:<input type="text" th:field="*{surname}" >
+    User Surname:<input type="text" th:field="*{surname}" disabled>
     <br>
     <button type="submit" style="margin: 20px;height: 30px;width: 100px;border: none;background: darkred;color: white;border-radius: 5px">Delete</button>
 </form>

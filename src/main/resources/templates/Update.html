@@ -15,6 +15,13 @@
     <br>
     User Surname:<input type="text" th:field="*{surname}" >
     <br>
+    <ul>
+        <li th:each="occupation :${allOccupations}">
+            <input type="checkbox" name="occupations" th:value="${occupation.id}" th:checked="${user.occupations.contains(occupation)}">
+            <label th:text="${occupation.name}"></label>
+        </li>
+    </ul>
+    <br>
     <button type="submit" style="margin: 20px;height: 30px;width: 100px;border: none;background: darkgreen;color: white;border-radius: 5px">Update</button>
     <button type="reset" style="margin: 20px;height: 30px;width: 100px;border: none;background: darkred;color: white;border-radius: 5px">Reset</button>
 </form>

@@ -13,6 +13,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>Surname</th>
+        <th>Occupations</th>
     </tr>
     </thead>
     <tbody>
@@ -20,6 +21,15 @@
         <td th:text="${user.id}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.surname}"></td>
+        <td>
+            <select>
+                <option
+                        th:each="occupation : ${user.occupations}"
+                        th:text="${occupation.name}"
+                        th:value="${occupation.id}"
+                ></option>
+            </select>
+        </td>
     </tr>
     </tbody>
 </table>
