@@ -24,26 +24,28 @@ flex-direction: column;
             <p class="error">Please Correct Errors Below</p>
         </div>
 
-        User ID:<input type="text" th:field="*{id}" >
-        <span class="error" th:if="${#fields.hasErrors('id')">
-            <ul>
-                <li th:each="err : ${#fields.errors('id')}" th:text="${err}"></li>
-            </ul>
-        </span>
+        User ID:<input type="text" th:field="*{id}">
+<!--        <span class="error" th:if="${#fields.hasErrors('id')">-->
+<!--            <ul th:each="err : ${#fields.errors('id')}" >-->
+<!--                <li th:text="${err}"></li>-->
+<!--            </ul>-->
+<!--        </span>-->
         <br>
             User Name:<input type="text" th:field="*{name}" >
-        <span class="error" th:if="${#fields.hasErrors('name')">
-            <ul>
-                <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
-            </ul>
-        </span>
+<!--        <span class="error" th:if="${#fields.hasErrors('name')">-->
+<!--            <ul>-->
+<!--                <li >-->
+<!--                    <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </span>-->
         <br>
             User Surname:<input type="text" th:field="*{surname}" >
-        <span class="error" th:if="${#fields.hasErrors('surname')">
-            <ul>
-                <li th:each="err : ${#fields.errors('surname')}" th:text="${err}"></li>
-            </ul>
-        </span>
+<!--        <span class="error" th:if="${#fields.hasErrors('surname')">-->
+<!--            <ul>-->
+<!--                <li th:each="err : ${#fields.errors('surname')}" th:text="${err}"></li>-->
+<!--            </ul>-->
+<!--        </span>-->
         <br>
             <p th:each="occupation :${allOccupations}">
                 <input type="checkbox" name="occupations" th:value="${occupation.id}">

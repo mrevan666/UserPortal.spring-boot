@@ -27,6 +27,11 @@ public class User {
     @Size(min = 3,max = 30,message = "Surname must be more than three characters")
     private String surname;
 
+    @ManyToMany
+    @JoinTable(name = "Users_Occupations",
+            joinColumns = @JoinColumn(name = "User_ID"),
+            inverseJoinColumns = @JoinColumn(name = "Occupation_ID"))
+    List<Occupation> occupations;
 
     public User() {
     }
@@ -61,11 +66,7 @@ public class User {
         this.surname = surname;
     }
 
-    @ManyToMany
-    @JoinTable(name = "Users_Occupations",
-                joinColumns = @JoinColumn(name = "User_ID"),
-                inverseJoinColumns = @JoinColumn(name = "Occupation_ID"))
-    List<Occupation> occupations;
+
 
     public List<Occupation> getOccupations() {
         return occupations;

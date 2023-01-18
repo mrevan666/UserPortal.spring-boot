@@ -46,6 +46,8 @@ public class UserController {
     @PostMapping(path = "/user/save")
     public String addUser(@Valid User user, BindingResult br, Model model){
         if(br.hasErrors()){
+            Iterable<Occupation> occupations = occupationRepository.findAll();
+            model.addAttribute("allOccupations",occupations);
             return "User";
         }
         userRepository.save(user);
